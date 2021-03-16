@@ -147,6 +147,11 @@
     <ClInclude Include="cogpair.h" />
     <ClInclude Include="soundpair.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_ger.csv" />
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_grk.csv" />
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_lat.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

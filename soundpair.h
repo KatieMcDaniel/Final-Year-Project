@@ -1,6 +1,7 @@
 using namespace std;
 #include <string>
 
+
 class soundpair {
 	public:
 		string firstSound;
@@ -9,8 +10,11 @@ class soundpair {
 		string secondLang;
 		int firstPlace;
 		int secondPlace;
-		soundpair(string first, string second);
-		void setSoundPair(char first, char second);
-		void findSound();
+		bool match;
+
+		soundpair();
+		void setSoundPair(int position, string first, string second);
+		void setSoundPair(string firstS, string secondS, int firstP, int secondP);
+		void getLetter(string lang, int position, string& letter);
 };
 

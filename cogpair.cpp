@@ -8,7 +8,7 @@ cogpair::cogpair(string first, string second)
 {}
 
 //find if words are cognates 
-bool cogpair::cogmatch(char first, char second, int& firstPlace, int& secondPlace) {
+bool cogpair::cogmatch(string first, string second, int& firstPlace, int& secondPlace) {
 	firstSound = first;
 	secondSound = second;
 
@@ -24,13 +24,12 @@ bool cogpair::cogmatch(char first, char second, int& firstPlace, int& secondPlac
 }
 
 //check where the sound is found in the word 
-bool cogpair::soundmatch(string word, char sound, int& place) {
+bool cogpair::soundmatch(string word, string sound, int& place) {
 	int l = word.length();
 
-	string s(1, l);
-
 	for (int i = 0; i <= l; i++) {
-		if (word[i] == sound) {
+		string s(1, word[i]);
+		if (s == sound) {
 			place = i;
 			return true;
 		}

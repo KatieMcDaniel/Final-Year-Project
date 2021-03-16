@@ -33,4 +33,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_ger.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_grk.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_lat.csv">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
