@@ -16,6 +16,8 @@ soundpair::soundpair()
     :firstLang(), secondLang(), firstSound(), secondSound(), firstPlace(0), secondPlace(0), match()
 {}
 
+//sets the sound pair params for when its trying out multiple sound shifts 
+//yeah should defos be a seperate class for doing this tbh...
 void soundpair::setSoundPair(int position, string first, string second) {
     firstLang = first;
     secondLang = second;
@@ -23,6 +25,7 @@ void soundpair::setSoundPair(int position, string first, string second) {
     getLetter(secondLang, position, secondSound);
 }
 
+//sets the soundpair params when its known that the sound shifft matches up 
 void soundpair::setSoundPair(string firstS, string secondS, int firstP, int secondP) {
      firstSound = firstS;
      secondSound = secondS;
@@ -31,13 +34,14 @@ void soundpair::setSoundPair(string firstS, string secondS, int firstP, int seco
      match = true;
 }
 
+//opens the files containg the sound evolution tables and uses them to find the relavent sound pair 
 void soundpair::getLetter(string lang, int position, string& letter) {
     // File pointer 
     fstream fin;
    
-    if (lang == "Ger") { fin.open("C:/Users/katie/Downloads/Final-Year-Project-main/Final-Year-Project-main/Tables/sound_evol_pie_ger.csv", ios::in); }
-    if (lang == "Grk") { fin.open("C:/Users/katie/Downloads/Final-Year-Project-main/Final-Year-Project-main/Tables/sound_evol_pie_grk.csv", ios::in); }
-    if (lang == "Lat") { fin.open("C:/Users/katie/Downloads/Final-Year-Project-main/Final-Year-Project-main/Tables/sound_evol_pie_grk.csv", ios::in); }
+    if (lang == "Ger") { fin.open("Tables/sound_evol_pie_ger.csv", ios::in); }
+    if (lang == "Grk") { fin.open("Tables/sound_evol_pie_grk.csv", ios::in); }
+    if (lang == "Lat") { fin.open("Tables/sound_evol_pie_grk.csv", ios::in); }
     
     if (fin.is_open()) {
   
@@ -57,7 +61,7 @@ void soundpair::getLetter(string lang, int position, string& letter) {
             // used for breaking words 
             stringstream s(line);
             // read every column data of a row and store it in a string variable, 'word' 
-            while (getline(s, word, ',')) {
+            while (getline(s, word, '\t')) {
                 // add all the column data of a row to a vector 
                 row.push_back(word);
             }
@@ -69,7 +73,7 @@ void soundpair::getLetter(string lang, int position, string& letter) {
         }
     }
 
-    else { cout << "file didn't open dumbo" << endl;  }
+    else { cout << "File didn't open." << endl; }
    
     return;
 }

@@ -9,18 +9,19 @@ using namespace std;
 
 int main()
 {
-    string firstCog = "Kardia";
-    string secondCog = "Heorta";
+    string firstCog = "darkia";
+    string secondCog = "heorta";
     cogpair cogpair(firstCog, secondCog);
    
     string firstLang = "Grk";
     string secondLang = "Ger";
+    //need to sort out this stuffs 
     soundpair sound;
     soundpair soundpair[9];
 
     int counter = 0;
    
-    for (int i = 1; i < 10; i++) {
+    for (int i = 2; i < 10; i++) {
         //setSoundPair finds the sound pairs between the languages being checked 
         sound.setSoundPair(i, firstLang, secondLang);
         cout << "Checking for matches with: " << sound.firstSound << " and " << sound.secondSound << endl;
