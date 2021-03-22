@@ -1,10 +1,11 @@
 Root	Lang	Orth	IPA	Note
-*p	AGr	p	p	
-*t	AGr	t	t	
-*k	AGr	k	k	
-*b	AGr	b	b	root: whether PIE had b is disputed
-*d	AGr	d	d	
-*g	AGr	g	g	
-*bh	AGr	ph/φ	pʰ	ipa: later pʰ -> f
-*dh	AGr	th/θ	tʰ	ipa: later tʰ -> θ
-*gh	AGr	kh/χ	kʰ	ipa: later kʰ -> χ
+*p	AGr	π/p	p	
+*t	AGr	τ/t	t	
+*k	AGr	κ/k	k	
+*b	AGr	β/b	b	root: whether PIE had b is disputed
+*d	AGr	δ/d	d	
+*g	AGr	γ/g	ɡ	
+*bh	AGr	φ/ph	pʰ	ipa: later pʰ -> f
+*dh	AGr	θ/th	tʰ	ipa: later tʰ -> θ
+*gh	AGr	χ/kh	kʰ	ipa: later kʰ -> χ
+*m	AGr	μ/m	m

@@ -1,32 +1,76 @@
 PIERoot-Num	PIEGloss	Lang	Orth	IPA	RefGloss	Notes
-pisk-796	'fish'	OE	fisk	fɪsk	'fish'	UT/OED
+pisk-796	'fish'	OE	fisk	fɪsk	'fish'	UT/OED sk->sk not g->k
 pisk-796	'fish'	La	piscis	pɪskɪs	'fish'	UT/OED
 pisk-796	'fish'	OI	iasc	iask	'fish'	UT/OED
 peuor-828	'fire'	OE	fyr	fyr	'fire'	UT/OED/Wikt
+peuor-828	'fire'	AGr	πυρ/pyra	pyr	'fire'	UT/OED
 peuor-828	'fire'	La	pyra	pyra	'fire'	UT/Wikt
-peuor-828	'fire'	AGr	pyra/πυρ	pyr	'fire'	UT/OED
 Ped-790-92	'foot’	OE	fot	fot	'foot’	UT/OED/Wikt
 Ped-790-92	'foot’	La	pes	pes	'foot’	UT/OED/Wikt
-Ped-790-92	'foot’	AGr	pous/πούς	pǒːs	'foot’	UT/OED/Wikt
-kapro-529	'he-goat’	OE	hæfer	xæfer	'he-goat’	UT/OED?/Wikt
-kapro-529	'he-goat’	La	caper	kaper	'he-goat’	UT/Wikt
-kapro-529	'he-goat’	AGr	kapros/κάπρος	kapros	'wild boar’	UT/Wikt
-kaput-529-30	'head’	OE	heafod	x_f_d	'head'	UT/OED/Wikt
-kaput-529-30	'head’	La	caput	kaput	'head'	UT/OED/Wikt
+Ped-790-92	'foot’	AGr	πούς/pous	pǒːs	'foot’	UT/OED/Wikt
 pou-842-43	'few/small’	OE	feawa	f_w_	'few'	UT/OED/Wikt
 pou-842-43	'few/small’	La	pullus	p_l_s	'young animal'	UT/Wikt
 pou-842-43	'few/small’	La	paucus	p_k_s	'few'	UT/OED/Wikt
 pou-842-43	'few/small’	La	parvus	parwus	'small'	UT/OED/Wikt
 pou-842-43	'few/small’	AGr	παῦρος	p_r_s	'small'	OED/Wikt
-bhrater-163-64	'brother'	OE	broþor	br_θ_r	'brother'	Wikt
-bhrater-163-64	'brother'	La	frāter	fr_t_r	'brother'	UT/Wikt
-bhrater-163-64	'brother'	AGr	φρᾱτηρ	pʰr_t_r	'clansman'	UT/Wikt
-phater-829	'father'	OE	fæder	f_d_r	'father'	UT/Wikt verner eg.
-phater-829	'father'	La	pater	p_t_r	'father'	UT/Wikt
-phater-829	'father'	AGr	πατηρ	p_t_r	'father'	UT/Wikt
 trei-1090-92	'three'	OE	þri	θr_	'three'	UT/Wikt
 trei-1090-92	'three'	La	trēs	tr_s	'three'	UT/Wikt
-trei-1090-92	'three'	AGr	treîs/τρεῖς	tr_s	'three'	UT/Wikt
+trei-1090-92	'three'	AGr	τρεῖς/treîs	tr_s	'three'	UT/Wikt
+tu-1097-98	'you'	OE	þu	θu	'thou'	Wikt/OED
+tu-1097-98	'you'	La	tū	tu	'thou'	Wikt
+tenus-1069	'thin'	OE	þynne	θynne	'thin'	UT/Wikt
+tenus-1069	'thin'	La	tenuis	t_n_s	'thin'	UT/Wikt
+tenus-1069	'thin'	AGr	τᾰνύω	tanýɔ	'to stretch'	Wikt
+bhrater-163-64	'brother'	OE	broþor	br_θ_r	'brother'	Wikt
+bhrater-163-64	'brother'	La	frāter	fr_t_r	'brother'	UT/Wikt 
+bhrater-163-64	'brother'	AGr	φρᾱτηρ	pʰr_t_r	'clansman'	UT/Wikt
+phater-829	'father'	OE	fæder	f_d_r	'father'	UT/Wikt verner eg t->d.
+phater-829	'father'	La	pater	p_t_r	'father'	UT/Wikt initial bh->f
+phater-829	'father'	AGr	πατηρ	p_t_r	'father'	UT/Wikt
 mater-700-1	'mother'	OE	mōdor	m_d_r	'mother'	UT/Wikt verner eg.
 mater-700-1	'mother'	La	māter	m_t_r	'mother'	UT/Wikt
 mater-700-1	'mother'	AGr	μήτηρ	m_t_r	'mother'	UT/Wikt
+kerd-579-80	'heart'	OE	heorte	xe͜or.te	'heart'	UT/Wikt
+kerd-579-80	'heart'	AGr	καρδία	kar.dí.aː	'heart'	UT/Wikt
+kerd-579-80	'heart'	La	cor	kor	'heart'	UT/Wikt
+kapro-529	'he-goat’	OE	hæfer	xæfer	'he-goat’	UT/OED?/Wikt
+kapro-529	'he-goat’	La	caper	kaper	'he-goat’	UT/Wikt
+kapro-529	'he-goat’	AGr	κάπρος/kapros	kapros	'wild boar’	UT/Wikt
+kaput-529-30	'head’	OE	heafod	x_f_d	'head'	UT/OED/Wikt
+kaput-529-30	'head’	La	caput	kaput	'head'	UT/OED/Wikt
+kuon-632-33	'dog'	OE	hund	xund	'dog'	UT/Wikt
+kuon-632-33	'dog'	La	canis	kanis	'dog'	UT/Wikt
+kuon-632-33	'dog'	AGr	κύων/kuon	ký.ɔːn	'dog'	UT/Wikt
+duo-228-32	'two'	OE	twa	twɑ	'two'	UT/Wikt
+duo-228-32	'two'	AGr	δύο	dý.o	'two'	UT/Wikt
+duo-228-32	'two'	La	duo	duo	'two'	UT/Wikt
+deru-214-17	'tree'	OE	treow	tre͜oːw	'tree'	UT/Wikt
+deru-214-17	'tree'	AGr	δρῦς	drŷːs	'tree'	UT/Wikt
+genu-380-81	'knee'	OE	cneo	kne͜oː	'knee'	UT/Wikt
+genu-380-81	'knee'	AGr	γόνυ	ɡó.ny	'knee'	UT/Wikt
+genu-380-81	'knee'	La	genu	ɡe.nuː	'knee'	UT/Wikt
+genu-381-82	'chin'	OE	cyn	kɪn	'chin'	UT/Wikt
+genu-381-82	'chin'	AGr	γένῠς/genus	ɡé.nyːs	'chin'	UT/Wikt
+genu-381-82	'chin'	La	gena	ɡe.na	'chin'	UT/Wikt
+ger-390-91	'corn'	OE	corn	korn	'corn'	UT/Wikt
+ger-390-91	'corn'	La	granum	ɡraː.num	'grain'	UT/Wikt
+gerebh-392	'carve'	OE	kerven	kɛr.vən	'carve'	UT/Wikt
+gerebh-392	'carve'	AGr	γράφω	ɡrá.pʰɔ	'scratch/cut'	UT/Wikt
+4bhel-122	'blade'	OE	blæd	blæd	'leaf/blade'	UT/Wikt
+4bhel-122	'blade'	AGr	φύλλον	pʰýl.lon	'leaf'	UT/Wikt
+4bhel-122	'blade'	La	folium	fo.li.um	'leaf'	UT/Wikt
+1bher-128-32	'to bear'	OE	beran	be.rɑn	'bear'	UT/Wikt
+1bher-128-32	'to bear'	AGr	φέρω	pʰé.rɔː	'bring'	UT/Wikt
+1bher-128-32	'to bear'	La	fero	fe.roː	'bear'	UT/Wikt
+1bhreg-165	'to_break'	OE	brecan	bre.kɑn	'break'	UT/Wikt
+1bhreg-165	'to_break'	La	frangere	fran.d͡ʒe.re	'fracture'	UT/Wikt
+medhu-707	'honey'	OE	medu	me.du	'mead'	UT/Wikt		
+medhu-707	'honey'	AGr	μέθυ	mé.tʰy	'mead'	UT/Wikt
+dhugheter-277	'daughter'	OE	dohtor	d_xt_r	'daughter'	UT/Wikt	
+dhugheter-277	'daughter'	AGr	θυγάτηρ/thugátēr	tʰ_ɡ_t_r	'daughter'	UT/Wikt
+dhuer-278-79	'door'	OE	duru	du.ru	'door'	UT/Wikt
+dhuer-278-79	'door'	AGr	θύρα/thura	tʰý.ra	'door'	UT/Wikt
+dhuer-278-79	'door'	La	foris	fo.ris	'door'	UT/Wikt
+1bheidh-117	'persuade/trust'	OE	bidan	biː.dɑn	'await'	UT/Wikt
+1bheidh-117	'persuade/trust'	AGr	πείθω/peitho	pěː.tʰɔː	'trust'	UT/Wikt
+1bheidh-117	'persuade/trust'	La	fido	fiː.doː	'trust'	UT/Wikt
