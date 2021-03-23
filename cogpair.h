@@ -1,3 +1,6 @@
+#if !defined COGPAIR
+#define COGPAIR
+
 using namespace std;
 #include <string>
 
@@ -13,3 +16,5 @@ class cogpair {
 		bool cogmatch(string first, string second, int& firstPlace, int& secondPlace);
 		bool soundmatch(string word, string sound, int& place);
 };
+
+#endif

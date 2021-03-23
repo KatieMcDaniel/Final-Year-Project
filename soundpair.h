@@ -1,3 +1,6 @@
+#if !defined SOUNDPAIR
+#define SOUNDPAIR
+
 using namespace std;
 #include <string>
 
@@ -18,3 +21,4 @@ class soundpair {
 		void getLetter(string lang, int position, string& letter);
 };
 
+#endif

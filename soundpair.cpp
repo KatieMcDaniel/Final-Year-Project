@@ -76,4 +76,4 @@ void soundpair::getLetter(string lang, int position, string& letter) {
     else { cout << "File didn't open." << endl; }
    
     return;
-}
+};
