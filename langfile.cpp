@@ -1,4 +1,4 @@
-#include "langfile.h"
+#include "soundpairTable.h"
 
 
 langfile::langfile(string first, string second)

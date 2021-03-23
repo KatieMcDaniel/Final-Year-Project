@@ -1,35 +1,59 @@
+#include <iostream>
+#include <string>
 #include "cogpair.h"
 #include "soundpair.h"
-#include "langfile.h"
+#include "soundpairTable.h"
+#include <vector>
 
 using namespace std;
 
-wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
+soundpairTable first_table;
+soundpairTable second_table;
 
 int main()
 {
-    string firstCog = "darkia";
+    string firstCog = "kardia";
     string secondCog = "heorta";
-    cogpair cogpair(cvt.from_bytes(firstCog), cvt.from_bytes(secondCog));
-   
+    cogpair cogpair(firstCog, secondCog);
+
     string firstLang = "Grk";
     string secondLang = "Ger";
-    langfile lang(firstLang, secondLang);
-    soundpair soundpair[9];
-    bool match;
 
+    // these lines create appropriate first_table and second_table
+    if (firstLang == "Ger") { first_table = soundpairTable("Tables/sound_evol_pie_ger_no_alts.csv"); }
+    if (firstLang == "Grk") { first_table = soundpairTable("Tables/sound_evol_pie_grk(rom_orth).csv"); }
+    if (firstLang == "Lat") { first_table = soundpairTable("Tables/sound_evol_pie_lat.csv"); }
+
+    if (secondLang == "Ger") { second_table = soundpairTable("Tables/sound_evol_pie_ger_no_alts.csv"); }
+    if (secondLang == "Grk") { second_table = soundpairTable("Tables/sound_evol_pie_grk(rom_orth).csv"); }
+    if (secondLang == "Lat") { second_table = soundpairTable("Tables/sound_evol_pie_lat.csv"); }
+
+    first_table.show();
+    second_table.show();
+
+    //need to sort out this stuffs 
+    soundpair sound;
+    soundpair soundpair[9];
 
     int counter = 0;
-   
-    for (int i = 2; i < 10; i++) {
-        //setSoundPair finds the sound pairs between the languages being checked 
-        lang.getLetter(i);
-        cout << "Checking for matches with: " << cvt.to_bytes(lang.firstSound) << " and " << cvt.to_bytes(lang.secondSound) << endl;
+
+    // counting from 0 in the tables
+    for (int i = 0; i < 9; i++) {
+        //setSoundPair finds the sound pairs between the languages being checked
+        //sound.setSoundPair(i, firstLang, secondLang);
+        //emms: above replaced by
+        sound.firstLang = first_table.the_pairs[i].secondLang;
+        sound.firstSound = first_table.the_pairs[i].secondSound;
+        sound.secondLang = second_table.the_pairs[i].secondLang;
+        sound.secondSound = second_table.the_pairs[i].secondSound;
+
+
+        cout << "Checking for matches with: " << sound.firstSound << " and " << sound.secondSound << endl;
         //cogmatch checks to see if the sound pair is present between the two words being checked 
-        match = cogpair.cogmatch(lang.firstSound, lang.secondSound, lang.firstPlace, lang.secondPlace);
+        sound.match = cogpair.cogmatch(sound.firstSound, sound.secondSound, sound.firstPlace, sound.secondPlace);
         //if the match occurs then the soundpair is saved in an array 
-        if (match == true) {
-            soundpair[counter].setSoundPair(lang.firstSound, lang.secondSound, lang.firstPlace, lang.secondPlace);
+        if (sound.match == true) {
+            soundpair[counter].setSoundPair(sound.firstSound, sound.secondSound, sound.firstPlace, sound.secondPlace);
             counter++;
         }
     }
@@ -50,11 +74,11 @@ int main()
                     soundpair[i].match = false;
                 }
             }
-        }  
-        
+        }
+
         for (int i = 0; i < counter; i++) {
             if (soundpair[i].match == true) {
-                cout << "Match found! Sounds: " << cvt.to_bytes(soundpair[i].firstSound) << " and " << cvt.to_bytes(soundpair[i].secondSound) << endl;
+                cout << "Match found! Sounds: " << soundpair[i].firstSound << " and " << soundpair[i].secondSound << endl;
                 n++;
             }
         }
@@ -64,8 +88,8 @@ int main()
         }
     }
     if (counter == 1) {
-        cout << "One match found! Sounds: " << cvt.to_bytes(soundpair[0].firstSound) << " and " << cvt.to_bytes(soundpair[0].secondSound) << endl;
+        cout << "One match found! Sounds: " << soundpair[0].firstSound << " and " << soundpair[0].secondSound << endl;
     }
-    
+
     return 0;
 }

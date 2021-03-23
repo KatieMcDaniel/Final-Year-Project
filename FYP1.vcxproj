@@ -140,13 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cogpair.cpp" />
-    <ClCompile Include="langfile.cpp" />
+    <ClCompile Include="soundpairTable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="soundpair.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cogpair.h" />
-    <ClInclude Include="langfile.h" />
+    <ClInclude Include="soundpairTable.h" />
     <ClInclude Include="soundpair.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,7 +24,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="langfile.cpp">
+    <ClCompile Include="soundpairTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <ClInclude Include="soundpair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="langfile.h">
+    <ClInclude Include="soundpairTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
