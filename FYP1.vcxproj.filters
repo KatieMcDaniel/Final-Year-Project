@@ -24,6 +24,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="langfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cogpair.h">
@@ -32,16 +35,8 @@
     <ClInclude Include="soundpair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_ger.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_grk.csv">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="..\..\..\..\Downloads\Final-Year-Project-main\Final-Year-Project-main\Tables\sound_evol_pie_lat.csv">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClInclude Include="langfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

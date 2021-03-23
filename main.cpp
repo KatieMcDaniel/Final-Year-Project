@@ -1,35 +1,35 @@
-#include <iostream>
-#include <string>
 #include "cogpair.h"
 #include "soundpair.h"
-#include <vector>
+#include "langfile.h"
 
 using namespace std;
 
+wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
 
 int main()
 {
     string firstCog = "darkia";
     string secondCog = "heorta";
-    cogpair cogpair(firstCog, secondCog);
+    cogpair cogpair(cvt.from_bytes(firstCog), cvt.from_bytes(secondCog));
    
     string firstLang = "Grk";
     string secondLang = "Ger";
-    //need to sort out this stuffs 
-    soundpair sound;
+    langfile lang(firstLang, secondLang);
     soundpair soundpair[9];
+    bool match;
+
 
     int counter = 0;
    
     for (int i = 2; i < 10; i++) {
         //setSoundPair finds the sound pairs between the languages being checked 
-        sound.setSoundPair(i, firstLang, secondLang);
-        cout << "Checking for matches with: " << sound.firstSound << " and " << sound.secondSound << endl;
+        lang.getLetter(i);
+        cout << "Checking for matches with: " << cvt.to_bytes(lang.firstSound) << " and " << cvt.to_bytes(lang.secondSound) << endl;
         //cogmatch checks to see if the sound pair is present between the two words being checked 
-        sound.match = cogpair.cogmatch(sound.firstSound, sound.secondSound, sound.firstPlace, sound.secondPlace);
+        match = cogpair.cogmatch(lang.firstSound, lang.secondSound, lang.firstPlace, lang.secondPlace);
         //if the match occurs then the soundpair is saved in an array 
-        if (sound.match == true) {
-            soundpair[counter].setSoundPair(sound.firstSound, sound.secondSound, sound.firstPlace, sound.secondPlace);
+        if (match == true) {
+            soundpair[counter].setSoundPair(lang.firstSound, lang.secondSound, lang.firstPlace, lang.secondPlace);
             counter++;
         }
     }
@@ -54,7 +54,7 @@ int main()
         
         for (int i = 0; i < counter; i++) {
             if (soundpair[i].match == true) {
-                cout << "Match found! Sounds: " << soundpair[i].firstSound << " and " << soundpair[i].secondSound << endl;
+                cout << "Match found! Sounds: " << cvt.to_bytes(soundpair[i].firstSound) << " and " << cvt.to_bytes(soundpair[i].secondSound) << endl;
                 n++;
             }
         }
@@ -64,7 +64,7 @@ int main()
         }
     }
     if (counter == 1) {
-        cout << "One match found! Sounds: " << soundpair[0].firstSound << " and " << soundpair[0].secondSound << endl; 
+        cout << "One match found! Sounds: " << cvt.to_bytes(soundpair[0].firstSound) << " and " << cvt.to_bytes(soundpair[0].secondSound) << endl;
     }
     
     return 0;
