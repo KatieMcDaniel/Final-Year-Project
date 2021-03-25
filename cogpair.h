@@ -12,9 +12,8 @@ public:
 	string secondSound;
 	bool match;
 
-	cogpair(string first, string second);
-	bool cogmatch(string first, string second, int& firstPlace, int& secondPlace);
-	bool soundmatch(string word, string sound, int& place);
+	cogpair();
+	bool soundmatch(u32string word, u32string sound, int& place);
 };
 
 #endif

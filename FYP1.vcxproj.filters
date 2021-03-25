@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cogpair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="soundpair.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -29,9 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cogpair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="soundpair.h">
       <Filter>Header Files</Filter>
     </ClInclude>

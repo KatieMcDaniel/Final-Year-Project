@@ -139,13 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cogpair.cpp" />
     <ClCompile Include="soundpairTable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="soundpair.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cogpair.h" />
     <ClInclude Include="soundpairTable.h" />
     <ClInclude Include="soundpair.h" />
   </ItemGroup>

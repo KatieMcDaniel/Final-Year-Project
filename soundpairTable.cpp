@@ -1,29 +1,7 @@
 #include "soundpairTable.h"
-#include <string>
-#include <fstream>
-#include <vector>
-#include <iostream> 
-#include <sstream>
-#include <locale>
-#include <codecvt>
 
 using namespace std;
 
-// class soundpairTable {
-
-
-//  public:
-
-//   soundpairTable();
-//   soundpairTable(string table);
-//   vector<soundpair> the_pairs;
-
-//   bool shift(string src, string &trg);
-
-//   void show();
-
-
-// };
 
 soundpairTable::soundpairTable() {}
 
@@ -55,9 +33,9 @@ soundpairTable::soundpairTable(string table_name) {
             soundpair sp;
             // set parts of sp from row
             sp.firstLang = "PIE";
-            sp.firstSound = row[0];
+            sp.firstSound = cvt.from_bytes(row[0]);
             sp.secondLang = row[1];
-            sp.secondSound = row[2];
+            sp.secondSound = cvt.from_bytes(row[2]);
 
             // add sp to the_pairs
             the_pairs.push_back(sp);
@@ -69,9 +47,31 @@ soundpairTable::soundpairTable(string table_name) {
 
 }
 
+soundpairTable::soundpairTable(vector<soundpair> first_pairs, vector<soundpair> second_pairs) {
+   
+    //Get line from the first table
+    for (int i = 0; i < first_pairs.size(); i++) {
+        //go through lines in the second table
+        for (int j = 0; j < second_pairs.size(); j++) {
+            soundpair sp;
+            // Check that the pairs both share the same PIE origin
+            if (first_pairs[i].firstSound == second_pairs[j].firstSound) {
+                //Assign values for the new table 
+                sp.firstLang = first_pairs[i].secondLang;
+                sp.firstSound = first_pairs[i].secondSound;
+                sp.secondLang = second_pairs[j].secondLang;
+                sp.secondSound = second_pairs[j].secondSound;
+                the_pairs.push_back(sp);
+            }
+   
+        }
 
+    }
+}
+
+
+//Prints out tables 
 void soundpairTable::show() {
-
 
     for (int i = 0; i < the_pairs.size(); i++) {
         soundpair sp;
@@ -81,11 +81,25 @@ void soundpairTable::show() {
             cout << sp.firstLang << '\t';
         }
 
-        cout << sp.firstSound << '\t';
+        cout << cvt.to_bytes(sp.firstSound) << '\t';
         cout << sp.secondLang << '\t';
-        cout << sp.secondSound << '\n';
+        cout << cvt.to_bytes(sp.secondSound) << '\n';
 
     }
+}
 
+//looks to see if a letter is found in a table
+bool soundpairTable::find(u32string firstSound, u32string& secondSound) {
 
+    for (int i = 0; i < the_pairs.size(); i++) {
+        soundpair sp;
+        sp = the_pairs[i];
+
+        if (sp.firstSound == firstSound) {
+            secondSound = sp.secondSound;
+            return true; 
+        }  
+    }
+
+    return false;
 }

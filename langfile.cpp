@@ -1,38 +1,49 @@
 #include "soundpairTable.h"
+#include <string>
+#include <fstream>
+#include <vector>
+#include <iostream> 
+#include <sstream>
+#include <locale>
+#include <codecvt>
+
+using namespace std;
+
+// class soundpairTable {
 
 
-langfile::langfile(string first, string second)
-    : firstLang(first), secondLang(second), firstSound(), secondSound(), firstPlace(0), secondPlace(0)
-{}
+//  public:
 
-//opens the files containg the sound evolution tables and uses them to find the relavent sound pair 
-void langfile::getLetter(int position) {
+//   soundpairTable();
+//   soundpairTable(string table);
+//   vector<soundpair> the_pairs;
 
-    string letter;
+//   bool shift(string src, string &trg);
 
+//   void show();
+
+
+// };
+
+soundpairTable::soundpairTable() {}
+
+soundpairTable::soundpairTable(string table_name) {
     // File pointer 
-    fstream fonein;
+    fstream fin;
 
-    if (firstLang == "Ger") { fonein.open("Tables/sound_evol_pie_ger.csv", ios::in); }
-    if (firstLang == "Grk") { fonein.open("Tables/sound_evol_pie_grk.csv", ios::in); }
-    if (firstLang == "Lat") { fonein.open("Tables/sound_evol_pie_grk.csv", ios::in); }
+    fin.open(table_name, ios::in);
 
-    if (fonein.is_open()) {
+    if (fin.is_open()) {
 
         // Read the Data from the file 
         // as String Vector 
         vector<string> row;
         string line, word, temp;
-        int counter = 0;
-        u32string s;
 
-        while (fonein >> temp) {
-            // make utf32 from utf8
-            s = cvt.from_bytes(temp);
-            int len = s.length();
+
+        getline(fin, line); // to skip header
+        while (getline(fin, line)) { // read an entire row and store it in a string variable 'line' 
             row.clear();
-            // read an entire row and store it in a string variable 'line' 
-            getline(fonein, line);
             // used for breaking words 
             stringstream s(line);
             // read every column data of a row and store it in a string variable, 'word' 
@@ -40,66 +51,41 @@ void langfile::getLetter(int position) {
                 // add all the column data of a row to a vector 
                 row.push_back(word);
             }
-            counter++;
-            if (counter == position) {
-                letter = row[0];
-                firstSound = cvt.from_bytes(row[2]);
-                break;
-            }
-            
-        }
-    }
 
+            soundpair sp;
+            // set parts of sp from row
+            sp.firstLang = "PIE";
+            sp.firstSound = row[0];
+            sp.secondLang = row[1];
+            sp.secondSound = row[2];
+
+            // add sp to the_pairs
+            the_pairs.push_back(sp);
+
+        }
+
+    }
     else { cout << "File didn't open." << endl; }
 
-    fstream ftwoin;
-
-    if (secondLang == "Ger") { ftwoin.open("Tables/sound_evol_pie_ger.csv", ios::in); }
-    if (secondLang == "Grk") { ftwoin.open("Tables/sound_evol_pie_grk.csv", ios::in); }
-    if (secondLang == "Lat") { ftwoin.open("Tables/sound_evol_pie_grk.csv", ios::in); }
-
-    if (ftwoin.is_open()) {
-
-        vector<string> row;
-        string line, word, temp;
-        u32string s;
-        while (ftwoin >> temp) {
-            s = cvt.from_bytes(temp);
-            int len = s.length();
-            row.clear();
-            getline(ftwoin, line);
-            stringstream s(line);
-
-            while (getline(s, word, '\t')) {
-                row.push_back(word);
-            }
-       
-            if (row[0] == letter) {
-                len = row[2].length();
-                /* if (len > 1) {
-                 revisit what must be done if there is a few letters in a row. 
-                 Read it and if a ";" appears then go in for a second time.
-                 Do you go in for a second time? Email and ask for an explaination before doing anything else 
-                } */
-                secondSound = cvt.from_bytes(row[2]); 
-                break;
-            }
-        }
-    }
-
-    else { cout << "File didn't open." << endl; }
-
-    return;
 }
 
-/*
 
-    OK HERE WE GO!!!
+void soundpairTable::show() {
 
-    READ THE THING, FIND A PIE LETTER
-    SET UP NEXT LOOP AND READ THE NEXT LANGAUGE FILE FOR A PIE LETTER
-    THEN READ OF ; OR / OR WHATEVER AND PUT IN SOME SORT OF MARKER TO LET THAT BE KNOWN. 
-    MAYBE DO SOME SORT OF COMPARISION TO PREVIOUSLT CHECKED LETTERS
-    THEN AT THE END CHECK VERUS SOME SORT OF TEST THINGY
 
-*/
+    for (int i = 0; i < the_pairs.size(); i++) {
+        soundpair sp;
+        sp = the_pairs[i];
+
+        if (sp.firstLang != "PIE") {
+            cout << sp.firstLang << '\t';
+        }
+
+        cout << sp.firstSound << '\t';
+        cout << sp.secondLang << '\t';
+        cout << sp.secondSound << '\n';
+
+    }
+
+
+}
