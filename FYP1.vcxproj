@@ -142,10 +142,15 @@
     <ClCompile Include="soundpairTable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="soundpair.cpp" />
+    <ClCompile Include="soundpairTable_test.cpp" />
+    <ClCompile Include="wordtest.cpp" />
+    <ClCompile Include="wordtestTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="soundpairTable.h" />
     <ClInclude Include="soundpair.h" />
+    <ClInclude Include="wordtest.h" />
+    <ClInclude Include="wordtestTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

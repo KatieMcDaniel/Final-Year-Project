@@ -3,6 +3,7 @@
 #include "cogpair.h"
 #include "soundpair.h"
 #include "soundpairTable.h"
+#include "wordtestTable.h"
 #include <vector>
 #include <locale>
 #include <codecvt>
@@ -15,7 +16,9 @@ soundpairTable first_table;
 soundpairTable second_table;
 soundpairTable joint_table;
 
-const string GRK = "Tables/sound_evol_pie_grk(rom_orth).csv";
+wordtestTable word_table;
+
+const string GRK = "Tables/sound_evol_pie_grk(grk_orth).csv";
 const string GER = "Tables/sound_evol_pie_ger_no_alts.csv";
 const string LAT = "Tables/sound_evol_pie_lat.csv";
 
@@ -23,11 +26,24 @@ wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
 
 int main()
 {
-    u32string firstCog = cvt.from_bytes("darkia");
-    u32string secondCog = cvt.from_bytes("heorta");
+    //create tables of words in different lanagauges 
+    word_table = wordtestTable();
 
-    string firstLang = "Grk";
+    //counts the number of correct matches 
+    int corCount = 0;
+    //counts the number of total matches checked
+    int count = 0;
+    //counts the numbers of matches that weren't correct but did contain part of a soundpair
+    // a part refers to when one word contains part of a valid soundpair but the word it is being compared to does not
+    int partCount = 0;
+    //counts the number of matches that were correct and additionally contained part of a sound pair
+    int partCorCount = 0;
+
+    string firstLang = "Lat";
     string secondLang = "Ger";
+
+    //organise the table previously created so that it contains the two langauges being checked in a way that easier to compare
+    word_table.organise(firstLang, secondLang);
 
     // these lines create appropriate first_table and second_table
     if (firstLang == "Ger") { first_table = soundpairTable(GER); }
@@ -38,41 +54,77 @@ int main()
     if (secondLang == "Grk") { second_table = soundpairTable(GRK); }
     if (secondLang == "Lat") { second_table = soundpairTable(LAT); }
 
-    first_table.show();
-    second_table.show();
-
     //This creates a joint table with the cognates for both languages 
     joint_table = soundpairTable(first_table.the_pairs, second_table.the_pairs);
-
     joint_table.show();
 
-    int l = firstCog.length();
-    int place = 0;
+    //this for loop goes through each of the word pairs found in the word table
+    for (int i = 0; i < word_table.the_pairs.size(); i++) {
 
-    for (int i = 0; i <= l; i++) {
-        //take a letter from the frist word
-        u32string sOne(1, firstCog[i]);
-        u32string sTwo;
+        u32string firstCog = cvt.from_bytes(word_table.the_pairs[i].firstWord);
+        u32string secondCog = cvt.from_bytes(word_table.the_pairs[i].secondWord);
 
-        //find if the letter is in one of the tables
-        bool search = joint_table.find(sOne, sTwo);
+        std::cout << "comparing " << word_table.the_pairs[i].firstWord << " and " << word_table.the_pairs[i].secondWord << endl;
 
-        if (search == true) {
-            // See if the matching sound pair can be found in the second word
-            bool match = soundmatch(secondCog, sTwo, place);
-            //if match return matches
-            if (match == true) {
-                cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
-            }
-            // if not a match let the user know that one part of a part was found but the matching part was not
-            if (match == false){
-                cout << "Sound " << cvt.to_bytes(sOne) << " was found in " << cvt.to_bytes(firstCog)
-                    << " but the matching sound " << cvt.to_bytes(sTwo) << " was not found in " << cvt.to_bytes(secondCog)
-                    << endl;
+        int l = firstCog.length();
+        int place = 0;
+        //checks if a match is correct
+        bool correct = false;
+        //checks if a part is correct 
+        bool part = false;
+
+        for (int i = 0; i <= l; i++) {
+            //take a letter from the frist word
+            u32string sOne(1, firstCog[i]);
+            u32string sTwo;
+
+            //find if the letter is in one of the tables
+            bool search = joint_table.find(sOne, sTwo);
+
+            if (search == true) {
+                // See if the matching sound pair can be found in the second word
+                bool match = soundmatch(secondCog, sTwo, place);
+                //if match return matches
+                if (match == true) {
+                    //cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
+                    correct = true;
+                }
+                // if not a match let the user know that one part of a part was found but the matching part was not
+                if (match == false) {
+                    part = true;
+                    std::cout << "Sound " << cvt.to_bytes(sOne) << " was found in " << cvt.to_bytes(firstCog)
+                        << " but the matching sound " << cvt.to_bytes(sTwo) << " was not found in " << cvt.to_bytes(secondCog)
+                        << endl;
+                }
             }
         }
+        if (correct == true) { 
+            //lets user know if this pair matched and gave the correct result
+            std::cout << "Yes" << endl;
+            //adding to the count of correct matches 
+            corCount++;
+            if (part == true) {
+                //adding to count of correct matches that also include parts 
+                partCorCount++;
+            }
+        }
+        else { 
+            std::cout << "No" << endl; 
+            if (part == true) {
+                //adding to the count of non-matches that have parts
+                partCount++;
+            }
+        }
+        //adding to total count
+        count++;      
     }
-
+    //All words being tested are expected to match so the "Expected matches" is just a count off all the matches trialed 
+    std::cout << endl << "Expected matches: " << count << endl;
+    std::cout << "Total matches: " << corCount << endl;
+    //the part matches change based on which language was put down first as only the firstcog has each of its letters checked.
+    //the part matches is just being used to see what possible gaps the sound pair table building and file system may currently have
+    std::cout << "Total part correct matches: " << partCorCount << endl;
+    std::cout << "Total part incorrect matches: " << partCount << endl;
     return 0;
 }
 

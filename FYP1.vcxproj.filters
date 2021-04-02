@@ -24,12 +24,27 @@
     <ClCompile Include="soundpairTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="soundpairTable_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wordtest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wordtestTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="soundpair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="soundpairTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wordtest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wordtestTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
