@@ -17,12 +17,12 @@ extern wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
 class soundpairTable {
 	public:
 		soundpairTable();
-		soundpairTable(string table);
+		soundpairTable(string table_name, int type);
 		soundpairTable(vector<soundpair> first_pairs, vector<soundpair> second_pairs);
 		vector<soundpair> the_pairs;
 
 		void show();
-		bool find(u32string firstSound, u32string& secondSound);
+		bool find(u32string firstSound, u32string& secondSound, int& pos);
 
 };
 

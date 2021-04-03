@@ -24,9 +24,6 @@
     <ClCompile Include="soundpairTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="soundpairTable_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="wordtest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

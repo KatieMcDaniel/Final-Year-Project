@@ -5,7 +5,11 @@ Root	Lang	Orth	IPA	Note
 *b	La	b	b	root: whether PIE had b is disputed
 *d	La	d	d	
 *g	La	g	ɡ	
-*bh	La	b;f	b;f	f word initially, else b
-*dh	La	d;f;b	d;f;b	f word initially, b > u,r or < r,l, else d
-*gh	La	h;g	h;ɡ	ɡ before sonorant else h
+*bh	La	b	b	f word initially else b
+*dh	La	d	d	f word initially b > u,r or < r,l, else d
+*gh	La	h	h	ɡ before sonorant else h
 *m	La	m	m
+*bh	La	f	f	f word initially
+*dh	La	f	f	f word initially
+*dh	La	b	b	f word initially
+*gh	La	g	ɡ	ɡ before sonorant else h

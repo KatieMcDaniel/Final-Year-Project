@@ -13,6 +13,7 @@ extern wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
 class wordtestTable {
 	public:
 		wordtestTable();
+		wordtestTable(int type);
 		vector<wordtest> oe_pairs;
 		vector<wordtest> la_pairs;
 		vector<wordtest> agr_pairs;

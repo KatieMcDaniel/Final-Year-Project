@@ -19,15 +19,18 @@ soundpairTable joint_table;
 wordtestTable word_table;
 
 const string GRK = "Tables/sound_evol_pie_grk(grk_orth).csv";
-const string GER = "Tables/sound_evol_pie_ger_no_alts.csv";
+const string GER = "Tables/sound_evol_pie_ger.csv";
 const string LAT = "Tables/sound_evol_pie_lat.csv";
 
 wstring_convert<codecvt_utf8<char32_t>, char32_t> cvt;
 
 int main()
 {
+    //Type is used to chose if the soundpairs and words will be in orth or IPA. If the type is 3 it means orth, if the type is 4 it means IPA
+    //The number indicates the row which will be read in the code. row[3] produces orth words, row[4] gives IPA words. 
+    int type = 4;
     //create tables of words in different lanagauges 
-    word_table = wordtestTable();
+    word_table = wordtestTable(type);
 
     //counts the number of correct matches 
     int corCount = 0;
@@ -39,22 +42,25 @@ int main()
     //counts the number of matches that were correct and additionally contained part of a sound pair
     int partCorCount = 0;
 
-    string firstLang = "Lat";
-    string secondLang = "Ger";
+    string firstLang = "Ger";
+    string secondLang = "Lat";
+  
 
     //organise the table previously created so that it contains the two langauges being checked in a way that easier to compare
     word_table.organise(firstLang, secondLang);
 
     // these lines create appropriate first_table and second_table
-    if (firstLang == "Ger") { first_table = soundpairTable(GER); }
-    if (firstLang == "Grk") { first_table = soundpairTable(GRK); }
-    if (firstLang == "Lat") { first_table = soundpairTable(LAT); }
+    //type - 1 gives the appropriate orth or IPA soundpair needed. May change to look a bit better.
+    if (firstLang == "Ger") { first_table = soundpairTable(GER, type-1); }
+    if (firstLang == "Grk") { first_table = soundpairTable(GRK, type-1); }
+    if (firstLang == "Lat") { first_table = soundpairTable(LAT, type-1); }
 
-    if (secondLang == "Ger") { second_table = soundpairTable(GER); }
-    if (secondLang == "Grk") { second_table = soundpairTable(GRK); }
-    if (secondLang == "Lat") { second_table = soundpairTable(LAT); }
+    if (secondLang == "Ger") { second_table = soundpairTable(GER, type-1); }
+    if (secondLang == "Grk") { second_table = soundpairTable(GRK, type-1); }
+    if (secondLang == "Lat") { second_table = soundpairTable(LAT, type-1); }
 
     //This creates a joint table with the cognates for both languages 
+    second_table.show();
     joint_table = soundpairTable(first_table.the_pairs, second_table.the_pairs);
     joint_table.show();
 
@@ -77,24 +83,35 @@ int main()
             //take a letter from the frist word
             u32string sOne(1, firstCog[i]);
             u32string sTwo;
-
+            int position = 0;
             //find if the letter is in one of the tables
-            bool search = joint_table.find(sOne, sTwo);
+            bool search = joint_table.find(sOne, sTwo, position);
 
             if (search == true) {
-                // See if the matching sound pair can be found in the second word
-                bool match = soundmatch(secondCog, sTwo, place);
-                //if match return matches
-                if (match == true) {
-                    //cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
-                    correct = true;
-                }
-                // if not a match let the user know that one part of a part was found but the matching part was not
-                if (match == false) {
-                    part = true;
-                    std::cout << "Sound " << cvt.to_bytes(sOne) << " was found in " << cvt.to_bytes(firstCog)
-                        << " but the matching sound " << cvt.to_bytes(sTwo) << " was not found in " << cvt.to_bytes(secondCog)
-                        << endl;
+                //while loop is added to ensure that for cases a letter has multiple possible soundpairs none of them are missed
+                //e.g if d could match with d or f, it ensures the code does not stop looking at just d because it is what turns up first in the table
+                //the position int is used to keep track of where in the table the code has searched so it does not get stuck in an endless loop repeating it self
+                while (position != joint_table.the_pairs.size() - 1) {
+                    // See if the matching sound pair can be found in the second word
+                    bool match = soundmatch(secondCog, sTwo, place);
+                    //if match return matches
+                    if (match == true) {
+                        cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
+                        correct = true;
+                        position = joint_table.the_pairs.size() - 1;
+                    }
+                    // if not a match let the user know that one part of a part was found but the matching part was not
+                    else {
+                        part = true;
+                        position++;
+                        if (position == joint_table.the_pairs.size() - 1) {
+                            std::cout << "Sound " << cvt.to_bytes(sOne) << " was found in " << cvt.to_bytes(firstCog)
+                                << " but the matching sound " << cvt.to_bytes(sTwo) << " was not found in " << cvt.to_bytes(secondCog)
+                                << endl;
+                        }
+                        bool search = joint_table.find(sOne, sTwo, position);
+                    }
+
                 }
             }
         }

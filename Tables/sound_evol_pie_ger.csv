@@ -1,11 +1,14 @@
 Root	Lang	Orth	IPA	Note
 *p	OE	f	f	
-*t	OE	þ;d	θ;d	d after unstressed vowel else θ
+*t	OE	þ	θ	d after unstressed vowel else θ
 *k	OE	h	x	
 *b	OE	p	p	root: whether PIE had b is disputed
 *d	OE	t	t	
 *g	OE	c	k	
 *bh	OE	b	b	
 *dh	OE	d	d	
-*gh	OE	ɡ	ɡ;ɣ;x	ɣ between vowels, x finally, else ɡ
+*gh	OE	ɡ	ɡ	ɣ between vowels, x finally, else ɡ
 *m	OE	m	m
+*t	OE	d	d	d after unstressed vowel else θ
+*gh	OE	ɡ	ɣ	ɣ between vowels
+*gh	OE	ɡ	x	ɣ between vowels

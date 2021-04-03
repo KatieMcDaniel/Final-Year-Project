@@ -1,3 +1,4 @@
+
 #include "soundpairTable.h"
 
 using namespace std;
@@ -5,7 +6,7 @@ using namespace std;
 
 soundpairTable::soundpairTable() {}
 
-soundpairTable::soundpairTable(string table_name) {
+soundpairTable::soundpairTable(string table_name, int type) {
     // File pointer 
     fstream fin;
 
@@ -35,7 +36,8 @@ soundpairTable::soundpairTable(string table_name) {
             sp.firstLang = "PIE";
             sp.firstSound = cvt.from_bytes(row[0]);
             sp.secondLang = row[1];
-            sp.secondSound = cvt.from_bytes(row[2]);
+            //varible type used so the code can easily be changed from using orth to IPA
+            sp.secondSound = cvt.from_bytes(row[type]);
 
             // add sp to the_pairs
             the_pairs.push_back(sp);
@@ -48,7 +50,7 @@ soundpairTable::soundpairTable(string table_name) {
 }
 
 soundpairTable::soundpairTable(vector<soundpair> first_pairs, vector<soundpair> second_pairs) {
-   
+
     //Get line from the first table
     for (int i = 0; i < first_pairs.size(); i++) {
         //go through lines in the second table
@@ -63,7 +65,7 @@ soundpairTable::soundpairTable(vector<soundpair> first_pairs, vector<soundpair> 
                 sp.secondSound = second_pairs[j].secondSound;
                 the_pairs.push_back(sp);
             }
-   
+
         }
 
     }
@@ -89,16 +91,16 @@ void soundpairTable::show() {
 }
 
 //looks to see if a letter is found in a table
-bool soundpairTable::find(u32string firstSound, u32string& secondSound) {
+bool soundpairTable::find(u32string firstSound, u32string& secondSound, int& pos) {
 
-    for (int i = 0; i < the_pairs.size(); i++) {
+    for (int i = pos; i < the_pairs.size(); i++) {
         soundpair sp;
         sp = the_pairs[i];
 
         if (sp.firstSound == firstSound) {
             secondSound = sp.secondSound;
-            return true; 
-        }  
+            return true;
+        }
     }
 
     return false;

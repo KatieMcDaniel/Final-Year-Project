@@ -9,7 +9,9 @@
 
 using namespace std;
 
-wordtestTable::wordtestTable(){
+wordtestTable::wordtestTable() {}
+
+wordtestTable::wordtestTable(int type){
 
     string words = { "Tables/cognates_table.csv" };
     fstream fin;
@@ -44,7 +46,8 @@ wordtestTable::wordtestTable(){
                 wt.firstLang = "PIE";
                 wt.firstWord = row[1];
                 wt.secondLang = row[2];
-                wt.secondWord = row[3];
+                //varible type used so the code can easily be changed from using orth to IPA
+                wt.secondWord = row[type];
 
                 // add wt to oe_pairs
                 oe_pairs.push_back(wt);
@@ -55,7 +58,8 @@ wordtestTable::wordtestTable(){
                 wt.firstLang = "PIE";
                 wt.firstWord = row[1];
                 wt.secondLang = row[2];
-                wt.secondWord = row[3];
+                //varible type used so the code can easily be changed from using orth to IPA
+                wt.secondWord = row[type];
 
                 // add wt to la_pairs
                 la_pairs.push_back(wt);
@@ -67,7 +71,8 @@ wordtestTable::wordtestTable(){
                 wt.firstLang = "PIE";
                 wt.firstWord = row[1];
                 wt.secondLang = row[2];
-                wt.secondWord = row[3];
+                //varible type used so the code can easily be changed from using orth to IPA
+                wt.secondWord = row[type];
 
                 // add wt to agr_pairs
                 agr_pairs.push_back(wt);
