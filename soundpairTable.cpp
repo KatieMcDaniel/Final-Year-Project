@@ -65,10 +65,9 @@ soundpairTable::soundpairTable(vector<soundpair> first_pairs, vector<soundpair> 
                 sp.secondSound = second_pairs[j].secondSound;
                 the_pairs.push_back(sp);
             }
-
         }
-
-    }
+    } 
+    sort();
 }
 
 
@@ -93,6 +92,7 @@ void soundpairTable::show() {
 //looks to see if a letter is found in a table
 bool soundpairTable::find(u32string firstSound, u32string& secondSound, int& pos) {
 
+    
     for (int i = pos; i < the_pairs.size(); i++) {
         soundpair sp;
         sp = the_pairs[i];
@@ -104,4 +104,55 @@ bool soundpairTable::find(u32string firstSound, u32string& secondSound, int& pos
     }
 
     return false;
+}
+
+void soundpairTable::sort()
+{
+    for (int i = 1; i < the_pairs.size(); i++)
+    {
+        soundpair temp;
+         temp = the_pairs[i];
+        // Insert s[j] at its correct position
+        int j = i - 1;
+        while (j >= 0 && temp.firstSound.length() > the_pairs[j].firstSound.length())
+        {
+            the_pairs[j+1] = the_pairs[j];
+            j--;
+        }
+        the_pairs[j + 1] = temp;
+    }
+}
+
+bool soundpairTable::longest_prefix(u32string input, int start, int& index, int& len, u32string& one, u32string& two) {
+
+    int max_len = 0;
+    bool whether_found = false;
+    u32string sym;
+    int sym_len;
+
+    for (int i = 0; i < the_pairs.size(); i++) {
+        sym = the_pairs[i].firstSound;
+        sym_len = sym.size();
+        if (sym_len <= max_len) { // already have longer match
+            continue;
+        }
+
+        if ((input.size() - start) < sym_len) { // not enough remains for sym to occur in input here
+            continue;
+        }
+
+        u32string chunk_to_compare;
+        chunk_to_compare = input.substr(start, sym_len);
+        if (chunk_to_compare == sym) {
+            max_len = sym_len;
+            index = i;
+            len = max_len;
+            one = the_pairs[i].firstSound;
+            two = the_pairs[i].secondSound;
+            whether_found = true;
+        }
+    }
+
+    return whether_found;
+
 }

@@ -1,3 +1,4 @@
 ﻿  main.cpp
-C:\Users\katie\source\repos\FYP1\FYP1\main.cpp(65,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\katie\source\repos\FYP1\FYP1\main.cpp(68,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\katie\source\repos\FYP1\FYP1\main.cpp(83,22): warning C4018: '<': signed/unsigned mismatch
   FYP1.vcxproj -> C:\Users\katie\source\repos\FYP1\Debug\FYP1.exe

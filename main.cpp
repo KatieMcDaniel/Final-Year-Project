@@ -42,7 +42,7 @@ int main()
     //counts the number of matches that were correct and additionally contained part of a sound pair
     int partCorCount = 0;
 
-    string firstLang = "Ger";
+    string firstLang = "Grk";
     string secondLang = "Lat";
   
 
@@ -79,15 +79,15 @@ int main()
         //checks if a part is correct 
         bool part = false;
 
-        for (int i = 0; i <= l; i++) {
-            //take a letter from the frist word
-            u32string sOne(1, firstCog[i]);
-            u32string sTwo;
+        int start = 0;
+        while (start < firstCog.size()) {
+            bool found = false;
+            int index = 0;
+            int len = 0;
             int position = 0;
-            //find if the letter is in one of the tables
-            bool search = joint_table.find(sOne, sTwo, position);
-
-            if (search == true) {
+            u32string sOne, sTwo;
+            found = joint_table.longest_prefix(firstCog, start, index, len, sOne, sTwo);
+            if (found) {
                 //while loop is added to ensure that for cases a letter has multiple possible soundpairs none of them are missed
                 //e.g if d could match with d or f, it ensures the code does not stop looking at just d because it is what turns up first in the table
                 //the position int is used to keep track of where in the table the code has searched so it does not get stuck in an endless loop repeating it self
@@ -96,7 +96,7 @@ int main()
                     bool match = soundmatch(secondCog, sTwo, place);
                     //if match return matches
                     if (match == true) {
-                        cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
+                        //cout << "Match found with " << cvt.to_bytes(sOne) << " and " << cvt.to_bytes(sTwo) << endl;
                         correct = true;
                         position = joint_table.the_pairs.size() - 1;
                     }
@@ -113,8 +113,11 @@ int main()
                     }
 
                 }
+                start = start + len;
             }
+            else { start = start + 1; }
         }
+       
         if (correct == true) { 
             //lets user know if this pair matched and gave the correct result
             std::cout << "Yes" << endl;
@@ -147,14 +150,13 @@ int main()
 
 //check if the sound is found in the second word 
 bool soundmatch(u32string word, u32string sound, int& place) {
-    int l = word.length();
-
-    for (int i = place; i <= l; i++) {
-        u32string s(1, word[i]);
-        if (s == sound) {
-            place = i;
-            return true;
-        }
+ 
+    // Find first occurrence of sound
+    size_t found = word.find(sound);
+    if (found != string::npos)
+    {
+        return true;
     }
+       
     return false;
 }

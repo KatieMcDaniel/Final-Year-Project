@@ -23,7 +23,8 @@ class soundpairTable {
 
 		void show();
 		bool find(u32string firstSound, u32string& secondSound, int& pos);
-
+		void sort();
+		bool longest_prefix(u32string input, int start, int& index, int& len, u32string& one, u32string& two);
 };
 
 #endif
